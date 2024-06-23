@@ -2,7 +2,12 @@
 
 const Options = () => {
   return (
-    <div>Options</div>
+    <div>
+      <button>Good</button>
+      <button>Neutral</button>
+      <button>Bad</button>
+      <button>Reset</button>
+    </div>
   )
 }
 

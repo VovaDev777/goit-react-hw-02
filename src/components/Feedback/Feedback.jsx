@@ -2,7 +2,13 @@
 
 const Feedback = () => {
   return (
-    <div>Feedback</div>
+    <ul>
+      <li>Good: </li>
+      <li>Neutral: </li>
+      <li>Bad: </li>
+      <li>Total: </li>
+      <li>Positive: </li>
+    </ul>
   )
 }
 
