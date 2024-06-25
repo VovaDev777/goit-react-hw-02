@@ -1,13 +1,14 @@
 
 
-const Options = ({good}) => {
-  
+const Options = ({good, handler}) => {
+  const arrayBtn = ['good', 'neutral', 'bad']
   return (
     <div>
-      <button onClick={good}>Good</button>
+      {arrayBtn.map(btn => <button type={btn} onClick={() => handler(btn)} key={btn}>{btn}</button>)}
+      {/* <button onClick={good}>Good</button>
       <button>Neutral</button>
       <button>Bad</button>
-      <button>Reset</button>
+      <button>Reset</button> */}
     </div>
   )
 }

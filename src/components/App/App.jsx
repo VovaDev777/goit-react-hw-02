@@ -1,6 +1,6 @@
 import Description from "../Description/Description"
 import Feedback from "../Feedback/Feedback"
-// import Options from "../Options/Options"
+import Options from "../Options/Options"
 import { useState } from "react"
 
 const App = () => {
@@ -32,16 +32,22 @@ const App = () => {
     });
   }
 
+  const updateHandler = (type) => {
+      setValue({...values, [type]: values[type] + 1})
+  }
+
   return (
     <>
     <Description/>
-    {/* <Options 
-    good = {updateClickGood}
-    /> */}
-      <button onClick={updateValueGood}>Good</button>
+    <Options 
+    options = {values}
+    handler={updateHandler}
+
+    />
+      {/* <button onClick={updateValueGood}>Good</button>
       <button onClick={updateValueNeutral}>Neutral</button>
       <button onClick={updateValueBad}>Bad</button>
-      <button onClick={resetValue}>Reset</button>
+      <button onClick={resetValue}>Reset</button> */}
     <Feedback
     good = {values.good}
     neutral = {values.neutral}
