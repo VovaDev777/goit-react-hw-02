@@ -1,6 +1,7 @@
 import Description from "../Description/Description"
 import Feedback from "../Feedback/Feedback"
 import Options from "../Options/Options"
+import Notification from "../Notification/Notification"
 import { useState } from "react"
 import 'normalize.css';
 
@@ -39,26 +40,39 @@ const App = () => {
   // const updateHandler = (type) => {
   //     setValue({...values, [type]: values[type] + 1})
   // }
-
+  const isValues = values.good > 0;
+  console.log(isValues)
   return (
     <>
     <Description/>
     <Options 
     // options = {values}
     // handler={updateHandler}
-    good={updateValueGood}
-    neutral={updateValueNeutral}
-    bad={updateValueBad}
-    reset={resetValue}
+    onGoodFeedback={updateValueGood}
+    onNeutralFeedback={updateValueNeutral}
+    onBadFeedback={updateValueBad}
+    onResetFeedback={resetValue}
     />
+    {/* {isValues ? <Options/> : <Notification/>} */}
+    {/* if (!isValues) {
+      <Notification/>
+    } else {
+      <Options 
+    onGoodFeedback={updateValueGood}
+    onNeutralFeedback={updateValueNeutral}
+    onBadFeedback={updateValueBad}
+    onResetFeedback={resetValue}
+    />
+    } */}
+    
       {/* <button onClick={updateValueGood}>Good</button>
       <button onClick={updateValueNeutral}>Neutral</button>
       <button onClick={updateValueBad}>Bad</button>
       <button onClick={resetValue}>Reset</button> */}
       <Feedback
-      good = {values.good}
-      neutral = {values.neutral}
-      bad = {values.bad}
+      goodFeedback = {values.good}
+      neutralFeedback = {values.neutral}
+      badFeedback = {values.bad}
       />
     </>
   )

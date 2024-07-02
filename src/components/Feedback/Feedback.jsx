@@ -1,14 +1,14 @@
 import css from "./Feedback.module.css"
 
-const Feedback = ({good, neutral, bad}) => {
-  let total = good+neutral+bad;
+const Feedback = ({goodFeedback, neutralFeedback, badFeedback}) => {
+  let total = goodFeedback+neutralFeedback+badFeedback;
   return (
     <ul className={css.list}>
-      <li>Good: {good}</li>
-      <li>Neutral: {neutral}</li>
-      <li>Bad: {bad}</li>
+      <li>Good: {goodFeedback}</li>
+      <li>Neutral: {neutralFeedback}</li>
+      <li>Bad: {badFeedback}</li>
       <li>Total: {total}</li>
-      <li>Positive: {total ? (Math.round((good / (total)) * 100)) : 0}%</li>
+      <li>Positive: {total ? (Math.round((goodFeedback / (total)) * 100)) : 0}%</li>
     </ul>
   )
 }
