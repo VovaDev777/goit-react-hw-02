@@ -8,27 +8,30 @@ import 'normalize.css';
 
 const App = () => {
 
-   const [values, setValue] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+   const [values, setValue] = useState(() => {
+    const savedFb = localStorage.getItem("feedback");
+
+    if (savedFb !== null) {
+      return JSON.parse(savedFb)
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    }
    });
-  //  console.log(values);
 
    useEffect(() => {
-
-   }, [])
+    localStorage.setItem("feedback", JSON.stringify(values))
+   }, [values])
 
    
-  const updateValueGood = () => {
-    setValue({...values, good: values.good + 1})
-  };
-  const updateValueNeutral = () => {
-    setValue({...values, neutral: values.neutral + 1})
-  };
-  const updateValueBad = () => {
-    setValue({...values, bad: values.bad + 1})
-  };
+   const updateValueGood = (event) => {
+    const type = event.target.name;
+    
+    setValue({...values, [type]: values[type] + 1})
+
+   }
   
   const resetValue = () => {
     setValue({
@@ -38,18 +41,18 @@ const App = () => {
     });
     localStorage.clear();
   }
-  // {total ? (Math.round((goodFeedback / (total)) * 100)) : 0}
+
   let total = values.good+values.bad+values.neutral;
   let posiveFeedback = (Math.round((values.good / (total)) * 100));
-  console.log(total)
+  const isAnyFeedback = total > 0;
+  
   return (
     <>
       <Description/>
       <Options 
-        onGoodFeedback={updateValueGood}
-        onNeutralFeedback={updateValueNeutral}
-        onBadFeedback={updateValueBad}
+        onButtonClick = {updateValueGood}
         onResetFeedback={resetValue}
+        isAnyFeedback = {isAnyFeedback}
       />
       {total > 0 ? 
       <Feedback
@@ -65,3 +68,16 @@ const App = () => {
 }
 
 export default App
+
+
+// function a() {
+
+// }
+
+// const a = () => {
+
+// }
+
+// const b = function () {
+
+// }
